@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+    </head>
+    <title>
+        Amazon Price Drop
+    </title>
+    <body>
+        <center>
+    <form method="post" action="http://localhost:3301/url">
+        Enter url<input type="url" name="url" placeholder="Enter url" size="90" width="550"></input><br><br>
+        Price needed to be dropped <input type="number" name="num" value="10" placeholder="Price needed to be reduced" ></input>
+        <br><br>
+    <button value="Submit" name="submit">Submit</button>    
+    </form>
+    <table id="example">
+        <th> Url_Site</th>
+        <th> Your Price </th>
+        <th> Original price </th>
+        <tbody></tbody>
+
+        
+    </table>
+</center>
+
+    </body>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          console.log("oooooooo");
+          
+          $.ajax({
+              type:"POST",
+              url: "/showdata",
+              success : function(data)
+              {
+                 
+              var trHTML="";
+              
+              console.log(data);
+              console.log(data.data.length);
+              for (var i = 0; i < data.data.length; i++)
+              {             
+             var item = data.data[i];               
+              trHTML += '<tr>';            
+              trHTML += '<td><p class="link" > <a href="'+ item.url_site +'onclick="return func(item.Shorturl)">'+ item.url_site + '</a></p></td>';
+              
+              // '<td><input id="del" onclick="return del(this)" class="btn-danger" type="button" value="Remove"></input></td>';
+              trHTML += '<td>'+ item.price + '</td>';  
+              trHTML += '<td>'+ item.original_price + '</td>';            
+              trHTML += '</tr>'; 
+              }
+          $('#example').append(trHTML);            
+              }
+                });
+                
+            });
+            var the_interval =60* 5000;
+    setInterval(function() {
+        console.log("I am doing my 5 minutes check");
+        $.ajax({
+              type:"POST",
+              url: "/a",
+              success : function(data)
+              {                
+              console.log(data);
+              console.log(data.data.length);
+              
+          
+                  
+              }
+                });
+    }, the_interval);
+    </script>
+</html>

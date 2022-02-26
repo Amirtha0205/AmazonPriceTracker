@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+    </head>
+    <title>
+        Amazon Price Drop
+    </title>
+    <body>
+        <center>
+    <form method="POST" action="http://localhost:3301/login">
+        Enter Name<input name="name" placeholder="Enter name" required></input> <br><br>
+        Enter email id <input type="email" name="email" placeholder="email id" required ></input>
+        <br>   <br>
+        Enter Password<input id="pass" name="pass" placeholder="Enter Password" required></input>  <br><br>
+        Re-Enter Password<input id="repass" name="repass" placeholder="Re-Enter Password" required></input>  <br><br>
+        Enter Phone number <input type="tel" name="phone" placeholder="Phone number" required></input>
+  <!-- <form method="POST" action="http://localhost:3301/otp">
+        <button value="otp" id="otp" name="otp">Get OTP</button> 
+    </form>  --> 
+        <br><br>
+       
+    <button value="Submit" name="submit">Submit to Login</button> 
+   <!-- onclick="return c()" -->
+    <a href="login.html">Already have an account</a>
+        </center>   
+    </form>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+        function c(){
+           var pa = (document.getElementById('repass').value);
+            var ta= (document.getElementById('pass').value);
+            if(pa!=ta){
+                alert("password Doesnt match ");
+            }
+            else if(pa.length>16 && pa.length<7){
+                alert("password should be more than 7 and lesss than 16 ");
+            }
+            else{
+                $('button').click(function(){
+                    console.log('hhhhhhh')
+                    $('form').attr('action','http://localhost:3301/login');
+                    $('form').attr('method','POST');
+                });
+            }
+        }
+    </script>
+</html>
